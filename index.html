@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="A_logo.png">
+  <title>AK ColorGradient</title>
+  <style>
+    *{
+      margin: 0%;
+      padding: 0%;
+      box-sizing: border-box;
+    }
+    body{
+     background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);;
+    }
+    section{
+      margin-top: 10%;
+    }
+    .container{
+    margin-bottom: 1rem;
+    }
+    h5{
+      font-family: 'Courier New', Courier, monospace;
+      text-decoration: underline;
+      margin-bottom: 1rem;
+    &:hover{
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+    }
+}
+
+#btn1{
+  padding: 12px 2rem;
+  border-radius: 5rem;
+  margin-right: 2rem;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border: none;
+  border-color: #f2f3ed;
+  background-color: #43e97b;
+color: white;
+&:hover{
+  background-color: #30dccb;
+   box-shadow: 6px 4px 5px 2px rgba(0, 0, 0, 0.653);
+cursor: pointer;
+}}
+#btn2{
+  padding: 12px 2rem;
+  border-radius: 5rem;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border: none;
+  border-color: #f2f3ed;
+  background-color: #38f9d7;
+color: white;
+&:hover{
+  background-color: #9730dc;
+  box-shadow: 6px 4px 5px 2px rgba(0, 0, 0, 0.653);
+  cursor: pointer;
+}}
+#copy{
+
+}
+#grandientcolortext{
+font-weight: 800;
+font-size: large;
+}
+@media(width<=400){
+  html{
+    font-size: 50%;
+  }
+  section{
+    margin-top: 200px
+  }
+  h5{
+    font-size: 12px;
+  }
+  #btn1{
+   padding: 6px 1rem;
+   font-size:14px ;
+  }
+  #btn2{
+   padding: 6px 1rem;
+   font-size:10px ;
+  }
+  #grandientcolortext{
+    font-size: small;
+  }
+
+  
+}
+  </style>
+</head>
+<body>
+  <section style="">
+    <center>
+      <div >
+        <div class="container">
+          <button id="btn1">#43e97b</button>
+        <button id="btn2">#38f9d7</button>
+        </div>
+        <h5 id="copy">Click here for Copy</h5>
+        <div id="grandientcolortext">
+           linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+        </div>
+      </div>
+    </center>
+  </section>
+  <script>
+    var btn1=document.getElementById('btn1');
+    var btn2=document.getElementById('btn2');
+    var gradientColorText=document.getElementById('grandientcolortext');
+    var copy=document.getElementById('copy');
+    let rgb1='#fff';
+    let rgb2='#38f9d7 ';
+    
+ const colorGenerator=()=>{
+   var digit='012345689abcdef';
+      var colors='#'
+      for(let i=0;i<6;i++)
+    {
+      colors=colors+digit[Math.floor(Math.random()*16)]
+      
+    }
+    return colors
+ }
+    
+
+ btn1.addEventListener('click',()=>{
+     rgb1=  colorGenerator();
+    console.log(rgb1)
+    document.body.style.backgroundImage=`linear-gradient(to right, ${rgb1} 0%, ${rgb2} 100%)`;
+    btn1.style.backgroundColor=`${rgb1}`;
+    btn1.innerHTML=`${rgb1}`
+    gradientColorText.innerHTML=`linear-gradient(to right, ${rgb1} 0%, ${rgb2} 100%)`
+})
+btn2.addEventListener('click',()=>{
+   rgb2=colorGenerator();
+  console.log(rgb2)
+  document.body.style.backgroundImage=`linear-gradient(to right,${rgb1}  0%, ${rgb2} 100%)`;
+    btn2.style.backgroundColor=`${rgb2}`
+    btn2.innerHTML=`${rgb2}`
+    gradientColorText.innerHTML=`linear-gradient(to right,${rgb1} 0%, ${rgb2} 100%)`;
+})
+
+copy.addEventListener('click', () => {
+    const textToCopy = gradientColorText.innerHTML;
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+            alert('Copied to clipboard: ' + textToCopy);
+        })
+        .catch((err) => {
+            console.error('Error copying text: ', err);
+        });
+});
+
+
+  </script>
+</body>
+</html>
